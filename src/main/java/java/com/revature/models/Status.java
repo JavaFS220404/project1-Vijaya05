@@ -32,5 +32,6 @@ public enum Status {
         public String toString() {
             return "Denied";
         }
-    }
+    };
+
 }

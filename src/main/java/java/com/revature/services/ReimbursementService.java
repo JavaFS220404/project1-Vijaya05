@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import com.revature.dao.impl.ReimbursementDAOImpl;
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
 import com.revature.models.User;
@@ -25,6 +26,12 @@ import java.util.List;
  * </ul>
  */
 public class ReimbursementService {
+	
+	ReimbursementDAOImpl reimbursementDaoImpl = new ReimbursementDAOImpl();
+	
+	public List<Reimbursement> getAllReimbursement(){
+		return reimbursementDaoImpl.getAllReimbursement();
+	}
 
     /**
      * <ul>
@@ -40,14 +47,23 @@ public class ReimbursementService {
      * The Resolver should be null. Additional fields may be null.
      * After processing, the reimbursement will have its status changed to either APPROVED or DENIED.
      */
-    public Reimbursement process(Reimbursement unprocessedReimbursement, Status finalStatus, User resolver) {
-        return null;
+    public boolean process(Reimbursement unprocessedReimbursement) {
+
+        reimbursementDaoImpl.process(unprocessedReimbursement);
+		return true;
     }
 
     /**
      * Should retrieve all reimbursements with the correct status.
      */
-    public List<Reimbursement> getReimbursementsByStatus(Status status) {
-        return Collections.emptyList();
+    public List<Reimbursement> getReimbursementsByStatus(int id) {
+    	
+    	return reimbursementDaoImpl.getReimbursementsById(id);
+    	
     }
+    public boolean addReimbursement(Reimbursement reimb) {
+		//UserDAOImpl userDaoImpl = new UserDAOImpl();
+    	reimbursementDaoImpl.addReimbursement(reimb);
+		return true;
+	}
 }
